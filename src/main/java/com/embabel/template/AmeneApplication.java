@@ -15,16 +15,21 @@
  */
 package com.embabel.template;
 
-import com.embabel.agent.config.annotation.EnableAgents;
-import com.embabel.agent.config.annotation.LoggingThemes;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.embabel.agent.config.annotation.EnableAgents;
+import com.embabel.agent.config.annotation.LoggingThemes;
+import com.embabel.agent.config.annotation.McpServers;
+
 
 @SpringBootApplication
-@EnableAgents(loggingTheme = LoggingThemes.STAR_WARS)
-class ProjectNameApplication {
+@EnableAgents(loggingTheme = LoggingThemes.STAR_WARS, mcpServers = {
+  McpServers.DOCKER_DESKTOP
+})
+
+class AmeneApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProjectNameApplication.class, args);
+        SpringApplication.run(AmeneApplication.class, args);
     }
 }
