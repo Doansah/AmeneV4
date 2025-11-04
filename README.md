@@ -14,7 +14,9 @@ I struggled for a while learning programming, and here are a few reasons why:
 	5.	Learning is built on testing and reforming knowledge
 
 I’ve written about this in more depth here:
-What Made Programming Hard for Me — Unknown Unknowns￼
+[What Made Programming Hard for Me — Unknown Unknowns](https://medium.com/@dillondoa/what-made-programming-hard-for-me-unknown-unknowns-dc43b327855f
+)￼
+
 
 ⸻
 
