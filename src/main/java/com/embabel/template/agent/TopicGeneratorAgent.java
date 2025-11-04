@@ -12,8 +12,10 @@ import com.embabel.agent.core.CoreToolGroups;
 import com.embabel.common.ai.model.LlmOptions;
 import com.embabel.template.agent.Domain.TopicNode;
 import com.embabel.template.agent.Domain.User;
+import com.embabel.template.enums.NodeType;
 
 public class TopicGeneratorAgent {
+
 
     @Action(description = "Generate topics based on user input and learning goals", toolGroups = CoreToolGroups.WEB)
     @AchievesGoal(description = "Generate relevant topics based on user learning topic and goals")
@@ -22,8 +24,10 @@ public class TopicGeneratorAgent {
         String desiredTopic = user.getCurrentTopic();
         String userGoal = user.getLearningGoal();
 
+
         var promptRunner = context.ai().withLlm(LlmOptions.withModel(OpenAiModels.GPT_5_MINI)
             .withTemperature(0.8));
+
 
         return (List<TopicNode>) promptRunner.createObjectIfPossible(
              """
@@ -49,7 +53,7 @@ public class TopicGeneratorAgent {
             );
         
     }
-
+    // Generate the central topic node based on user input
     @Action(description = "Generate the central topic node based on user input")
     public TopicNode generateCentralTopicNode(User user, OperationContext context) {
         String desiredTopic = user.getCurrentTopic();
@@ -67,7 +71,7 @@ public class TopicGeneratorAgent {
                 - A brief description of what the topic covers
                 - Relevant tags for categorization
                 - Difficulty level (BEGINNER, INTERMEDIATE, ADVANCED)
-                - Importance level (Critical!)
+                - Importance level (LOW, MEDIUM, HIGH, CRITICAL)
 
                 Include:
                 1. Prerequisites needed before studying the main topic
@@ -79,5 +83,16 @@ public class TopicGeneratorAgent {
                 """.formatted(desiredTopic, userGoal),
             TopicNode.class
         );
+    }
+    // for now just assume there only one central node 
+    // no majors yet!
+    public TopicNode findCentralNode(List<TopicNode> nodes) {
+        for (TopicNode node : nodes) {
+            if (node.nodeType == NodeType.CENTRAL) {
+                return node;
+            }
+        }
+
+        return null;
     }
 }

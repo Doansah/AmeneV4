@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.embabel.template.enums.DifficultyBand;
 import com.embabel.template.enums.ImportanceBand;
+import com.embabel.template.enums.NodeType;
 
 /* 
 I think the id's of the Domain must be implemented differently. 
@@ -38,10 +39,12 @@ public class Domain {
         private ImportanceBand importanceBand;
         private double breadthBias;
         private double depthBias;
+        private List<String> tags;
+        public NodeType nodeType;
 
-        public TopicNode(String id, String name, String description, String goal, 
-                        String difficultyBand, String importanceBand, 
-                        double breadthBias, double depthBias) {
+        public TopicNode(String id, String name, String description, String goal,
+                         String difficultyBand, String importanceBand,
+                         double breadthBias, double depthBias, List<String> tags, NodeType nodeType) {
             this.id = id;
             this.name = name;
             this.description = description;
@@ -50,8 +53,24 @@ public class Domain {
             this.importanceBand = ImportanceBand.valueOf(importanceBand);
             this.breadthBias = breadthBias;
             this.depthBias = depthBias;
+            this.tags = tags;
+            this.nodeType = nodeType;
+        }
+
+        @Override 
+        public String toString() {
+            return "TopicNode{id='%s', name='%s', description='%s', goal='%s', difficultyBand='%s', importanceBand='%s', breadthBias=%.2f, depthBias=%.2f, tags=%s, nodeType=%s}"
+                .formatted(id, name, description, goal, difficultyBand, importanceBand, breadthBias, depthBias, tags.toString(), nodeType);
         }
     }   
+
+    public static class TopicNodeList {
+        private List<TopicNode> topics;
+
+        public TopicNodeList(List<TopicNode> topics) {
+            this.topics = topics;
+        }
+    }
 
 public static class RelationEdge {
         private String fromTopicId;

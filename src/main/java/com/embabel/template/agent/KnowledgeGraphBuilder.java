@@ -13,8 +13,42 @@ import com.embabel.template.agent.Domain.KnowledgeGraph;
 
 public class KnowledgeGraphBuilder {
     private  TopicGeneratorAgent topicGeneratorAgent;
+    
+    @Action(description = "Define the relationships between a list of topics from Central Node")
+    public List<Domain.RelationEdge> defineRelationsFromCentralNode(List<Domain.TopicNode> topics,                                                          
+                                                                    OperationContext context) {
+        var promptRunner = context.ai().withLlm(LlmOptions.withModel(OpenAiModels.GPT_5_MINI)
+            .withTemperature(0.8));
 
+        Domain.TopicNode centralNode = topicGeneratorAgent.findCentralNode(topics);
 
+            return (List<Domain.RelationEdge>) promptRunner.createObject(
+             """
+                You are an expert in educational content structuring. Given the following list of topics and a central topic node, 
+                define the relationships between the central node and the other topics to form a coherent knowledge structure.
+
+                Central Topic Node:
+                %s
+
+                Other Topics:
+                %s
+
+                Instructions:
+                1. Identify how each topic relates to the central node (e.g., prerequisite, related concept, advanced topic).
+                2. Create clear relationship types for each connection.
+                3. Ensure the relationships support a logical learning progression.
+
+                Output a list of relation edges in the format:
+                - From Topic ID
+                - To Topic ID
+                - Relation Type
+                """.formatted(centralNode.toString(), topics.toString()),
+                Domain.RelationEdge.class
+            ); 
+
+    }
+    
+    // Does not ensure that each TopicNode is connected to Central Node
     @Action(description="Define the relationships between a list of topics")
     public List<Domain.RelationEdge> defineTopicRelations(List<Domain.TopicNode> topics, OperationContext context) {
         var promptRunner = context.ai().withLlm(LlmOptions.withModel(OpenAiModels.GPT_5_MINI)
