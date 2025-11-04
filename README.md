@@ -7,11 +7,11 @@ The Template comes from: https://github.com/embabel/embabel-agent-examples
 1. Learning Is Difficult
 
 I struggled for a while learning programming, and here are a few reasons why:
-	1.	Coding is built upon a tower of abstractions
-	2.	Beginners (like me) cannot discern what is and isn’t important
-	3.	It’s extremely easy to fall into dependency rabbit holes
-	4.	Beginners (like me) often don’t even know what they want to learn
-	5.	Learning is built on testing and reforming knowledge
+1.	Coding is built upon a tower of abstractions
+2.	Beginners (like me) cannot discern what is and isn’t important
+3.	It’s extremely easy to fall into dependency rabbit holes
+4.	Beginners (like me) often don’t even know what they want to learn
+5.	Learning is built on testing and reforming knowledge
 
 I’ve written about this in more depth here:
 [What Made Programming Hard for Me — Unknown Unknowns](https://medium.com/@dillondoa/what-made-programming-hard-for-me-unknown-unknowns-dc43b327855f
@@ -36,8 +36,6 @@ I’m a great artist, I know!
 
 In this case, the user wants to learn the Client-Server Model. This is the central node, and the other topics—Networking, Coding Basics, etc.—are related to it. To understand the Client-Server Model, an understanding of adjacent topics is relevant.
 
-Read here for a more in depth breakdown of Knowledge Graphs:
-https://www.ontotext.com/knowledgehub/fundamentals/what-is-a-knowledge-graph/
 
 ⸻
 
@@ -45,17 +43,21 @@ https://www.ontotext.com/knowledgehub/fundamentals/what-is-a-knowledge-graph/
 
 These are more philosophical than technical, so bear with me:
 
-a) Knowledge Can Be Represented as a Graph
+1. Knowledge Can Be Represented as a Graph
 Nodes represent ideas themselves, and edges represent how they relate to one another.
 
 Goofy Example:
 “Dogs” (Node A) is related to “Cats” (Node B) because they are both animals — a relation of sameness.
 
+Read here for a more in depth breakdown of Knowledge Graphs:
+https://www.ontotext.com/knowledgehub/fundamentals/what-is-a-knowledge-graph/
+
+
 ⸻
 
 4. Miscellaneous Ideas (That Are Cool but Hard to Prove — Still Implementing Anyway)
 
-Given the structure of our knowledge graph (a set of nodes and edges), we can alter our learning style.
+Given the structure of our knowledge graph (a set of nodes and edges), we can alter our learning style. (JGraphT will help here)
 
 Consider the difference between learning a historical event versus a biological system:
 	•	Learning about the History of Egypt requires a sequential lens.
@@ -63,10 +65,26 @@ Consider the difference between learning a historical event versus a biological 
 
 Because the graph is represented as a data structure, we can analyze its shape to inform how we ought to learn the topic.
 
-Depth-Heavy Graphs (high level count, etc.)
-	•	Build a roadmap and enforce sequential learning
+Graph Structure -> Learning Strategy 
+Shallow & Wide: Breadth First Overview, rely on analogy 
+Deep & Narrow: Layered Conceptual Buildup
 
-Breadth-Heavy Graphs
-	•	Emphasize context and interrelations between ideas
+Think Human Body vs History of Egypt
+
+We can also conduct Node Analysis to inform learning style as well.
+
+
+Node Analysis -> Learning Style 
+
+Centrality 
+	•	How much does X node affect others? 	
+  
+Identifying Bottlenecks
+  • Important nodes with a SINGLE Requires A relationship other important nodes
+
+
+
+
+
 
 ⸻
